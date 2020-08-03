@@ -1,0 +1,36 @@
+#perfil{
+    width: 100% !important;
+}
+
+.card-header{
+    background-color: black !important;
+    color: whitesmoke !important;
+}
+
+
+.list-tecnologias{
+    padding: 0.5rem;
+}
+.list-tecnologias-par{
+    padding: 1rem;
+    padding-right:0.5rem
+}
+
+.list-tecnologias-impar{
+    text-align: right !important;
+    padding: 1rem;
+}
+
+.impar{
+    padding-top: 1rem !important;
+    text-align: right !important;
+    padding-left: 0 !important;
+}
+
+.par{
+    padding-right: 0 !important;
+}
+
+#card-bodyinfo{
+    height: 100% !important;
+}
