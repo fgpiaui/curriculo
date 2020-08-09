@@ -5,15 +5,17 @@
         </title>
         <link rel="stylesheet" type="text/css" href="curriculo.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+        <script src="https://code.highcharts.com/highcharts.js"></script>
+        <script src="https://code.highcharts.com/modules/wordcloud.js"></script>
+        <script src="https://code.highcharts.com/modules/exporting.js"></script>
+        <script src="https://code.highcharts.com/modules/export-data.js"></script>
+        <script src="https://code.highcharts.com/modules/accessibility.js"></script>
     </head>
     <body class="container-fluid">        
         <div class="card">
             <div class="card-header text-center"><h4 class="display-4">Currículo</h4></div>
             <div class="card-body">
-                <div id="header" class="row justify-content-around border-bottom pb-2">            
-                    <div class="col-md-2">
-                        <img src="foto.png" id="perfil" class="img-fluid img-thumbnail rounded float-left">
-                    </div>
+                <div id="header" class="row justify-content-around border-bottom pb-2">                                
                     <div class="col-md-6 border-left">  
                         <table class="table table-sm">
                             <tr>
@@ -40,12 +42,14 @@
                             </tr>
                         </table>                              
                     </div>
-                    <div class="col-md-4  border-left">
+                    <div class="col-md-6  border-left">
                         <h4>Resumo:</h1>
                         <p class="text-justify">
-                            Sou <b>desenvolvedor web full stack</b>, atuo tanto com Django, quanto com <b>Python + Angular</b> e nas 
-                            horas vagas estou aprendendo outras stacks <b>(Node + React)</b>. Desde o estágio tenho contato com <b>
-                            mercado financeiro</b> e auxilio na melhoria contínua do ramo.
+                            Formado em <b>Engenharia de Computação</b> pela USP com <b>MBA em Gestão de Projetos</b>
+                            tenho carreira profissional como <b>Desenvolvedor WEB</b>, dentre as tecnologias mais
+                            utilizadas por mim estão <b>Django, Python e JavaScript</b>, além disso, tenho experiência
+                            com <b>Angular, Versionamento em Git, Docker e integração CI</b>. Atualmente estudo a stack
+                            <b>NodeJS e ReactJS</b> para finalidades pessoais.
                         </p>
                     </div>
                 </div>        
@@ -70,6 +74,9 @@
                                 <li>CI/CD</li>
                                 <li>Html, CSS (Bootstrap 4) e JavaScript</li>
                                 <li>Criação de Testes Unitários</li>
+                                <li>Consulta SQL em PostgreSQL</li>
+                                <li>Docker</li>
+                                <li>Desenvolvimento em C#</li>
                             </ul>
                             <div class="d-inline card-title">
                                 <h5>Luz Soluções Financeiras - Analista de Risco</h5>
@@ -81,6 +88,7 @@
                                 <li>Análise de Dados de mercado financeiro</li>
                                 <li>Consultas SQL em Oracle</li>
                                 <li>Desenvolvimento VBA</li>
+                                <li>Desenvolvimento Python</li>
                             </ul>
                             <div class="d-inline card-title">
                                 <h5>Bradesco - Estagiário</h5>
@@ -90,6 +98,7 @@
                                 <li>Desenvolvimento VBA</li>
                                 <li>Banco de Dados ACCESS</li>
                                 <li>Validação e Automatização de Rotinas</li>
+                                <li>Criação de queries em SQL</li>
                             </ul>
                         </div>
                     </div>
@@ -108,34 +117,8 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="card">
-                        <h6 class="card-title ml-2 pb-2 pt-2 border-bottom">Tecnologias</h6>
-                        <div class="row pr-1 pl-1 mb-1">
-                            <div class="col-md-4  par">
-                                <ul class="list-unstyled">
-                                    <li class="list-tecnologias-par">Python</li>
-                                    <li class="list-tecnologias">Javascript</li>
-                                    <li class="list-tecnologias">TypeScript</li>
-                                    <li class="list-tecnologias-par">Linux</li>                                    
-                                </ul>
-                            </div>
-                            <div class="col-md-4  impar">
-                                <ul class="list-unstyled">
-                                    <li class="list-tecnologias">TDD</li>
-                                    <li class="list-tecnologias-impar">CSS</li>
-                                    <li class="list-tecnologias">CI/CD</li>
-                                    <li class="list-tecnologias-impar">HTML</li>                                    
-                                </ul>
-                            </div>
-                            <div class="col-md-4  par">
-                                <ul class="list-unstyled">
-                                    <li class="list-tecnologias-par">Angular</li>
-                                    <li class="list-tecnologias">Git</li>
-                                    <li class="list-tecnologias-par">Django</li>
-                                    <li class="list-tecnologias">Node</li>
-                                </ul>
-                            </div>
-                        </div>
+                    <div class="card">                        
+                        <div id="container"></div>
                     </div>
                     <div class="card">
                         <h6 class="card-title ml-2 pb-2 pt-2 border-bottom">Meus Valores</h6>
@@ -182,5 +165,42 @@
                 </div>
             </div>
         </div>
+        <script>
+            var data = function(){
+                objeto = []
+                tecnologias = ['Python', 'Django', 'API Rest','PostgreSQL','HTML5', 'JavaScript', 'CSS', 'Bootstrap', 'Pandas',
+                'Angular', 'SCRUM','Gitlab','Git','CI/CD', 'Docker', 'C#'];
+                i=100;
+                for (indice in tecnologias){                    
+                    objeto.push({
+                        name:tecnologias[indice],
+                        weight:i
+                    });
+                    console.log(objeto)
+                    i=i-4
+                    
+                }
+                return objeto
+            }
+            Highcharts.chart('container', {
+                
+                series: [{                    
+                    rotation:{
+                        to:-90,
+                        from:90,
+                        orientation:10
+                    },
+                    colors:[
+                        '#555555'
+                    ],
+                    type: 'wordcloud',
+                    data: data(),                
+                    name: 'Occurrences'
+                }],
+                title: {
+                    text: 'Tecnologias'
+                }
+            });
+        </script>
     </body>
 </html>

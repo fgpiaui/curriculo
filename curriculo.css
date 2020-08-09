@@ -1,5 +1,6 @@
 #perfil{
     width: 100% !important;
+    
 }
 
 .card-header{
@@ -7,6 +8,17 @@
     color: whitesmoke !important;
 }
 
+.highcharts-credits{
+    display:none !important;
+}
+
+.highcharts-exporting-group{
+    display:none !important;
+}
+
+#container{
+    min-height: 320px;
+}
 
 .list-tecnologias{
     padding: 0.5rem;
